@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h4>DOMO Task Management</h4>
+    <form class="form-signin" action='/administration/authenticate/' method="POST">{% csrf_token %}
+        <div class="col-xs-2">
+            <div class="form-group row">
+                <span style="color:red;">*</span>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+            </div>
+            <div class="form-group row">
+                <span style="color:red;">*</span>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="form-group row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <span style="color: red;">{{message}}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Login" class="btn btn-primary btn-md" />{% if error %}{{error}}{% endif %}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
